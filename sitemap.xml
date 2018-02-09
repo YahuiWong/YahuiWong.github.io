@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://blog.yahui.wang/2017/11/14/npm-config-set-registry/</loc>
+    <loc>http://blog.yahui.wang/2015/12/27/linux-jexus-default-lauching/</loc>
     
     <lastmod>2018-02-09T11:12:00.070Z</lastmod>
     
@@ -16,7 +16,7 @@
   </url>
   
   <url>
-    <loc>http://blog.yahui.wang/2015/12/27/linux-jexus-default-lauching/</loc>
+    <loc>http://blog.yahui.wang/2017/11/14/npm-config-set-registry/</loc>
     
     <lastmod>2018-02-09T11:12:00.070Z</lastmod>
     
@@ -30,7 +30,7 @@
   </url>
   
   <url>
-    <loc>http://blog.yahui.wang/2017/05/10/hello-nodejs-http-server/</loc>
+    <loc>http://blog.yahui.wang/2017/05/06/install-nodejs/</loc>
     
     <lastmod>2018-02-09T11:12:00.060Z</lastmod>
     
@@ -44,7 +44,14 @@
   </url>
   
   <url>
-    <loc>http://blog.yahui.wang/2014/01/02/how-to-define-jquery-plugin/</loc>
+    <loc>http://blog.yahui.wang/2017/03/06/hello-react-native-redux/</loc>
+    
+    <lastmod>2018-02-09T11:12:00.060Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.yahui.wang/2017/05/10/hello-nodejs-http-server/</loc>
     
     <lastmod>2018-02-09T11:12:00.060Z</lastmod>
     
@@ -58,13 +65,6 @@
   </url>
   
   <url>
-    <loc>http://blog.yahui.wang/2017/03/06/hello-react-native-redux/</loc>
-    
-    <lastmod>2018-02-09T11:12:00.060Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.yahui.wang/2017/11/14/gitlab-install/</loc>
     
     <lastmod>2018-02-09T11:12:00.060Z</lastmod>
@@ -72,16 +72,9 @@
   </url>
   
   <url>
-    <loc>http://blog.yahui.wang/2017/05/06/install-nodejs/</loc>
+    <loc>http://blog.yahui.wang/2014/01/02/how-to-define-jquery-plugin/</loc>
     
     <lastmod>2018-02-09T11:12:00.060Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.yahui.wang/2017/11/14/git-first/</loc>
-    
-    <lastmod>2018-02-09T11:12:00.050Z</lastmod>
     
   </url>
   
@@ -93,7 +86,14 @@
   </url>
   
   <url>
-    <loc>http://blog.yahui.wang/2015/11/04/csharp-helloworld/</loc>
+    <loc>http://blog.yahui.wang/2017/11/14/git-first/</loc>
+    
+    <lastmod>2018-02-09T11:12:00.050Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.yahui.wang/2015/11/06/csharp-flow/</loc>
     
     <lastmod>2018-02-09T11:12:00.050Z</lastmod>
     
@@ -114,7 +114,7 @@
   </url>
   
   <url>
-    <loc>http://blog.yahui.wang/2015/11/06/csharp-flow/</loc>
+    <loc>http://blog.yahui.wang/2015/11/04/csharp-helloworld/</loc>
     
     <lastmod>2018-02-09T11:12:00.050Z</lastmod>
     
@@ -135,14 +135,14 @@
   </url>
   
   <url>
-    <loc>http://blog.yahui.wang/2016/06/20/android-ant-package/</loc>
+    <loc>http://blog.yahui.wang/2016/03/12/aop-eg/</loc>
     
     <lastmod>2018-02-09T11:12:00.040Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.yahui.wang/2016/03/12/aop-eg/</loc>
+    <loc>http://blog.yahui.wang/2016/06/20/android-ant-package/</loc>
     
     <lastmod>2018-02-09T11:12:00.040Z</lastmod>
     
@@ -177,14 +177,14 @@
   </url>
   
   <url>
-    <loc>http://blog.yahui.wang/2017/04/22/react-native-layout-flex/</loc>
+    <loc>http://blog.yahui.wang/2016/12/20/react-native-gradle/</loc>
     
     <lastmod>2017-09-09T05:40:48.980Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.yahui.wang/2016/06/16/ios-xcodebuild-xcrun/</loc>
+    <loc>http://blog.yahui.wang/2017/04/22/react-native-layout-flex/</loc>
     
     <lastmod>2017-09-09T05:40:48.980Z</lastmod>
     
@@ -198,14 +198,14 @@
   </url>
   
   <url>
-    <loc>http://blog.yahui.wang/categories/index.html</loc>
+    <loc>http://blog.yahui.wang/2017/07/03/netsh-interface-portproxy/</loc>
     
     <lastmod>2017-09-09T05:40:48.980Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.yahui.wang/2016/12/20/react-native-gradle/</loc>
+    <loc>http://blog.yahui.wang/2016/06/16/ios-xcodebuild-xcrun/</loc>
     
     <lastmod>2017-09-09T05:40:48.980Z</lastmod>
     
@@ -219,7 +219,7 @@
   </url>
   
   <url>
-    <loc>http://blog.yahui.wang/2017/07/03/netsh-interface-portproxy/</loc>
+    <loc>http://blog.yahui.wang/categories/index.html</loc>
     
     <lastmod>2017-09-09T05:40:48.980Z</lastmod>
     
