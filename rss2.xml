@@ -4,7 +4,7 @@
   xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>亚辉的博客</title>
-    <link>http://blog.yahui.wang/</link>
+    <link>https://blog.yahui.wang/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>The pursuit of endless</description>
@@ -13,8 +13,8 @@
     
     <item>
       <title>gitlab安装和配置</title>
-      <link>http://blog.yahui.wang/2017/11/14/gitlab-install/</link>
-      <guid>http://blog.yahui.wang/2017/11/14/gitlab-install/</guid>
+      <link>https://blog.yahui.wang/2017/11/14/gitlab-install/</link>
+      <guid>https://blog.yahui.wang/2017/11/14/gitlab-install/</guid>
       <pubDate>Tue, 14 Nov 2017 10:06:23 GMT</pubDate>
       <description>
       
@@ -25,13 +25,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/11/14/gitlab-install/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/11/14/gitlab-install/#disqus_thread</comments>
     </item>
     
     <item>
       <title>Git第一步，本地开发环境部署</title>
-      <link>http://blog.yahui.wang/2017/11/14/git-first/</link>
-      <guid>http://blog.yahui.wang/2017/11/14/git-first/</guid>
+      <link>https://blog.yahui.wang/2017/11/14/git-first/</link>
+      <guid>https://blog.yahui.wang/2017/11/14/git-first/</guid>
       <pubDate>Tue, 14 Nov 2017 06:44:53 GMT</pubDate>
       <description>
       
@@ -42,13 +42,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/11/14/git-first/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/11/14/git-first/#disqus_thread</comments>
     </item>
     
     <item>
       <title>npm更换镜像为国内源</title>
-      <link>http://blog.yahui.wang/2017/11/14/npm-config-set-registry/</link>
-      <guid>http://blog.yahui.wang/2017/11/14/npm-config-set-registry/</guid>
+      <link>https://blog.yahui.wang/2017/11/14/npm-config-set-registry/</link>
+      <guid>https://blog.yahui.wang/2017/11/14/npm-config-set-registry/</guid>
       <pubDate>Tue, 14 Nov 2017 06:02:31 GMT</pubDate>
       <description>
       
@@ -62,13 +62,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/11/14/npm-config-set-registry/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/11/14/npm-config-set-registry/#disqus_thread</comments>
     </item>
     
     <item>
       <title>centos7.* 安装 python3,pip3</title>
-      <link>http://blog.yahui.wang/2017/11/13/centos7-install-python3/</link>
-      <guid>http://blog.yahui.wang/2017/11/13/centos7-install-python3/</guid>
+      <link>https://blog.yahui.wang/2017/11/13/centos7-install-python3/</link>
+      <guid>https://blog.yahui.wang/2017/11/13/centos7-install-python3/</guid>
       <pubDate>Mon, 13 Nov 2017 07:02:33 GMT</pubDate>
       <description>
       
@@ -79,13 +79,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/11/13/centos7-install-python3/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/11/13/centos7-install-python3/#disqus_thread</comments>
     </item>
     
     <item>
       <title>让linux程序后台运行</title>
-      <link>http://blog.yahui.wang/2017/11/13/linux-bg-jobs-setsid-hup/</link>
-      <guid>http://blog.yahui.wang/2017/11/13/linux-bg-jobs-setsid-hup/</guid>
+      <link>https://blog.yahui.wang/2017/11/13/linux-bg-jobs-setsid-hup/</link>
+      <guid>https://blog.yahui.wang/2017/11/13/linux-bg-jobs-setsid-hup/</guid>
       <pubDate>Mon, 13 Nov 2017 04:14:58 GMT</pubDate>
       <description>
       
@@ -99,13 +99,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/11/13/linux-bg-jobs-setsid-hup/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/11/13/linux-bg-jobs-setsid-hup/#disqus_thread</comments>
     </item>
     
     <item>
       <title>如何在CentOS 7上安装htop</title>
-      <link>http://blog.yahui.wang/2017/11/13/centos-7-install-htop/</link>
-      <guid>http://blog.yahui.wang/2017/11/13/centos-7-install-htop/</guid>
+      <link>https://blog.yahui.wang/2017/11/13/centos-7-install-htop/</link>
+      <guid>https://blog.yahui.wang/2017/11/13/centos-7-install-htop/</guid>
       <pubDate>Mon, 13 Nov 2017 04:05:21 GMT</pubDate>
       <description>
       
@@ -117,13 +117,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/11/13/centos-7-install-htop/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/11/13/centos-7-install-htop/#disqus_thread</comments>
     </item>
     
     <item>
       <title>在七牛云里绑定的自定义域名使用Let’s Encrypt免费证书</title>
-      <link>http://blog.yahui.wang/2017/11/09/free-ssl-qiniu/</link>
-      <guid>http://blog.yahui.wang/2017/11/09/free-ssl-qiniu/</guid>
+      <link>https://blog.yahui.wang/2017/11/09/free-ssl-qiniu/</link>
+      <guid>https://blog.yahui.wang/2017/11/09/free-ssl-qiniu/</guid>
       <pubDate>Thu, 09 Nov 2017 10:43:32 GMT</pubDate>
       <description>
       
@@ -135,13 +135,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/11/09/free-ssl-qiniu/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/11/09/free-ssl-qiniu/#disqus_thread</comments>
     </item>
     
     <item>
       <title>Senparc.Weixin.MP微信开发平台对接 [1]</title>
-      <link>http://blog.yahui.wang/2017/11/08/Senparc-Weixin-MP-Component/</link>
-      <guid>http://blog.yahui.wang/2017/11/08/Senparc-Weixin-MP-Component/</guid>
+      <link>https://blog.yahui.wang/2017/11/08/Senparc-Weixin-MP-Component/</link>
+      <guid>https://blog.yahui.wang/2017/11/08/Senparc-Weixin-MP-Component/</guid>
       <pubDate>Wed, 08 Nov 2017 10:50:24 GMT</pubDate>
       <description>
       
@@ -155,13 +155,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/11/08/Senparc-Weixin-MP-Component/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/11/08/Senparc-Weixin-MP-Component/#disqus_thread</comments>
     </item>
     
     <item>
       <title>使用Visual Studio Code和typescript 开发调试React Native项目</title>
-      <link>http://blog.yahui.wang/2017/08/26/react-native-typescript-init-debug/</link>
-      <guid>http://blog.yahui.wang/2017/08/26/react-native-typescript-init-debug/</guid>
+      <link>https://blog.yahui.wang/2017/08/26/react-native-typescript-init-debug/</link>
+      <guid>https://blog.yahui.wang/2017/08/26/react-native-typescript-init-debug/</guid>
       <pubDate>Sat, 26 Aug 2017 06:52:54 GMT</pubDate>
       <description>
       
@@ -173,13 +173,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/08/26/react-native-typescript-init-debug/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/08/26/react-native-typescript-init-debug/#disqus_thread</comments>
     </item>
     
     <item>
       <title>windows实现端口映射</title>
-      <link>http://blog.yahui.wang/2017/07/03/netsh-interface-portproxy/</link>
-      <guid>http://blog.yahui.wang/2017/07/03/netsh-interface-portproxy/</guid>
+      <link>https://blog.yahui.wang/2017/07/03/netsh-interface-portproxy/</link>
+      <guid>https://blog.yahui.wang/2017/07/03/netsh-interface-portproxy/</guid>
       <pubDate>Mon, 03 Jul 2017 12:13:07 GMT</pubDate>
       <description>
       
@@ -190,13 +190,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/07/03/netsh-interface-portproxy/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/07/03/netsh-interface-portproxy/#disqus_thread</comments>
     </item>
     
     <item>
       <title>ios私有api检测工具介绍</title>
-      <link>http://blog.yahui.wang/2017/05/31/iOS-private-api-checker-tools/</link>
-      <guid>http://blog.yahui.wang/2017/05/31/iOS-private-api-checker-tools/</guid>
+      <link>https://blog.yahui.wang/2017/05/31/iOS-private-api-checker-tools/</link>
+      <guid>https://blog.yahui.wang/2017/05/31/iOS-private-api-checker-tools/</guid>
       <pubDate>Wed, 31 May 2017 05:03:17 GMT</pubDate>
       <description>
       
@@ -207,13 +207,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/05/31/iOS-private-api-checker-tools/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/05/31/iOS-private-api-checker-tools/#disqus_thread</comments>
     </item>
     
     <item>
       <title>React Native入门到精通</title>
-      <link>http://blog.yahui.wang/2017/05/20/react-native-step-by-step/</link>
-      <guid>http://blog.yahui.wang/2017/05/20/react-native-step-by-step/</guid>
+      <link>https://blog.yahui.wang/2017/05/20/react-native-step-by-step/</link>
+      <guid>https://blog.yahui.wang/2017/05/20/react-native-step-by-step/</guid>
       <pubDate>Sat, 20 May 2017 07:41:50 GMT</pubDate>
       <description>
       
@@ -225,13 +225,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/05/20/react-native-step-by-step/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/05/20/react-native-step-by-step/#disqus_thread</comments>
     </item>
     
     <item>
       <title>初探nodejs安装 并快速使用http-server</title>
-      <link>http://blog.yahui.wang/2017/05/10/hello-nodejs-http-server/</link>
-      <guid>http://blog.yahui.wang/2017/05/10/hello-nodejs-http-server/</guid>
+      <link>https://blog.yahui.wang/2017/05/10/hello-nodejs-http-server/</link>
+      <guid>https://blog.yahui.wang/2017/05/10/hello-nodejs-http-server/</guid>
       <pubDate>Wed, 10 May 2017 10:02:07 GMT</pubDate>
       <description>
       
@@ -243,13 +243,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/05/10/hello-nodejs-http-server/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/05/10/hello-nodejs-http-server/#disqus_thread</comments>
     </item>
     
     <item>
       <title>nodejs各平台（Windows，mac，linux）安装</title>
-      <link>http://blog.yahui.wang/2017/05/06/install-nodejs/</link>
-      <guid>http://blog.yahui.wang/2017/05/06/install-nodejs/</guid>
+      <link>https://blog.yahui.wang/2017/05/06/install-nodejs/</link>
+      <guid>https://blog.yahui.wang/2017/05/06/install-nodejs/</guid>
       <pubDate>Sat, 06 May 2017 11:02:07 GMT</pubDate>
       <description>
       
@@ -261,13 +261,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/05/06/install-nodejs/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/05/06/install-nodejs/#disqus_thread</comments>
     </item>
     
     <item>
       <title>react-native布局之flex</title>
-      <link>http://blog.yahui.wang/2017/04/22/react-native-layout-flex/</link>
-      <guid>http://blog.yahui.wang/2017/04/22/react-native-layout-flex/</guid>
+      <link>https://blog.yahui.wang/2017/04/22/react-native-layout-flex/</link>
+      <guid>https://blog.yahui.wang/2017/04/22/react-native-layout-flex/</guid>
       <pubDate>Sat, 22 Apr 2017 12:06:48 GMT</pubDate>
       <description>
       
@@ -279,13 +279,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/04/22/react-native-layout-flex/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/04/22/react-native-layout-flex/#disqus_thread</comments>
     </item>
     
     <item>
       <title>react-native redux入门</title>
-      <link>http://blog.yahui.wang/2017/03/06/hello-react-native-redux/</link>
-      <guid>http://blog.yahui.wang/2017/03/06/hello-react-native-redux/</guid>
+      <link>https://blog.yahui.wang/2017/03/06/hello-react-native-redux/</link>
+      <guid>https://blog.yahui.wang/2017/03/06/hello-react-native-redux/</guid>
       <pubDate>Mon, 06 Mar 2017 10:23:10 GMT</pubDate>
       <description>
       
@@ -296,13 +296,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/03/06/hello-react-native-redux/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/03/06/hello-react-native-redux/#disqus_thread</comments>
     </item>
     
     <item>
       <title>swift 入门笔记</title>
-      <link>http://blog.yahui.wang/2017/01/28/swift-step-by-step/</link>
-      <guid>http://blog.yahui.wang/2017/01/28/swift-step-by-step/</guid>
+      <link>https://blog.yahui.wang/2017/01/28/swift-step-by-step/</link>
+      <guid>https://blog.yahui.wang/2017/01/28/swift-step-by-step/</guid>
       <pubDate>Sat, 28 Jan 2017 12:23:35 GMT</pubDate>
       <description>
       
@@ -314,13 +314,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2017/01/28/swift-step-by-step/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2017/01/28/swift-step-by-step/#disqus_thread</comments>
     </item>
     
     <item>
       <title>golang中func的receiver</title>
-      <link>http://blog.yahui.wang/2016/12/20/golang-func-receiver/</link>
-      <guid>http://blog.yahui.wang/2016/12/20/golang-func-receiver/</guid>
+      <link>https://blog.yahui.wang/2016/12/20/golang-func-receiver/</link>
+      <guid>https://blog.yahui.wang/2016/12/20/golang-func-receiver/</guid>
       <pubDate>Tue, 20 Dec 2016 12:05:20 GMT</pubDate>
       <description>
       
@@ -333,13 +333,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2016/12/20/golang-func-receiver/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2016/12/20/golang-func-receiver/#disqus_thread</comments>
     </item>
     
     <item>
       <title>React Native Android gradle下载慢问题解决</title>
-      <link>http://blog.yahui.wang/2016/12/20/react-native-gradle/</link>
-      <guid>http://blog.yahui.wang/2016/12/20/react-native-gradle/</guid>
+      <link>https://blog.yahui.wang/2016/12/20/react-native-gradle/</link>
+      <guid>https://blog.yahui.wang/2016/12/20/react-native-gradle/</guid>
       <pubDate>Tue, 20 Dec 2016 07:41:50 GMT</pubDate>
       <description>
       
@@ -351,13 +351,13 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2016/12/20/react-native-gradle/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2016/12/20/react-native-gradle/#disqus_thread</comments>
     </item>
     
     <item>
       <title>Xamarin IOS笔记 用户界面-布局</title>
-      <link>http://blog.yahui.wang/2016/06/21/Xamarin-IOS-UIVew/</link>
-      <guid>http://blog.yahui.wang/2016/06/21/Xamarin-IOS-UIVew/</guid>
+      <link>https://blog.yahui.wang/2016/06/21/Xamarin-IOS-UIVew/</link>
+      <guid>https://blog.yahui.wang/2016/06/21/Xamarin-IOS-UIVew/</guid>
       <pubDate>Tue, 21 Jun 2016 10:26:53 GMT</pubDate>
       <description>
       
@@ -368,7 +368,7 @@
       
       </description>
       
-      <comments>http://blog.yahui.wang/2016/06/21/Xamarin-IOS-UIVew/#disqus_thread</comments>
+      <comments>https://blog.yahui.wang/2016/06/21/Xamarin-IOS-UIVew/#disqus_thread</comments>
     </item>
     
   </channel>
