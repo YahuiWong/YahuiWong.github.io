@@ -1,0 +1,809 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ssl," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="亚辉的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="这里我们要介绍下 acme.sh ,它实现了 acme 协议支持的所有验证协议. 一般有两种方式验证: http 和 dns 验证.”，今天我们就要用到acme.sh的这个DNS验证来获得Let’s Encrypt免费证书以便在七牛云里使用。  获取Let’s Encrypt免费证书首先你需要一个VPS来运行acme.sh这个脚本，然后照着【使用acme.sh快速部署生成Let’s Encryp">
+<meta name="keywords" content="ssl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在七牛云里绑定的自定义域名使用Let’s Encrypt免费证书">
+<meta property="og:url" content="http://blog.yahui.wang/2017/11/09/free-ssl-qiniu/index.html">
+<meta property="og:site_name" content="亚辉的博客">
+<meta property="og:description" content="这里我们要介绍下 acme.sh ,它实现了 acme 协议支持的所有验证协议. 一般有两种方式验证: http 和 dns 验证.”，今天我们就要用到acme.sh的这个DNS验证来获得Let’s Encrypt免费证书以便在七牛云里使用。  获取Let’s Encrypt免费证书首先你需要一个VPS来运行acme.sh这个脚本，然后照着【使用acme.sh快速部署生成Let’s Encryp">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-09T11:12:00.050Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在七牛云里绑定的自定义域名使用Let’s Encrypt免费证书">
+<meta name="twitter:description" content="这里我们要介绍下 acme.sh ,它实现了 acme 协议支持的所有验证协议. 一般有两种方式验证: http 和 dns 验证.”，今天我们就要用到acme.sh的这个DNS验证来获得Let’s Encrypt免费证书以便在七牛云里使用。  获取Let’s Encrypt免费证书首先你需要一个VPS来运行acme.sh这个脚本，然后照着【使用acme.sh快速部署生成Let’s Encryp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.yahui.wang/2017/11/09/free-ssl-qiniu/"/>
+
+
+
+
+
+  <title>在七牛云里绑定的自定义域名使用Let’s Encrypt免费证书 | 亚辉的博客</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f563a17daea7fd3c8c2618842db63d7f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">亚辉的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Coding For Fun</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.yahui.wang/2017/11/09/free-ssl-qiniu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Arthur.Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="亚辉的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">在七牛云里绑定的自定义域名使用Let’s Encrypt免费证书</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-09T18:43:32+08:00">
+                2017-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/11/09/free-ssl-qiniu/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/11/09/free-ssl-qiniu/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>这里我们要介绍下 <a href="https://github.com/Neilpang/acme.sh" target="_blank" rel="external">acme.sh</a> ,它实现了 acme 协议支持的所有验证协议. 一般有两种方式验证: http 和 dns 验证.”，今天我们就要用到acme.sh的这个DNS验证来获得Let’s Encrypt免费证书以便在七牛云里使用。</p>
+</blockquote>
+<h1 id="获取Let’s-Encrypt免费证书"><a href="#获取Let’s-Encrypt免费证书" class="headerlink" title="获取Let’s Encrypt免费证书"></a>获取Let’s Encrypt免费证书</h1><p>首先你需要一个VPS来运行acme.sh这个脚本，然后照着【使用acme.sh快速部署生成Let’s Encrypt免费证书】一文里的相关教程用DNS验证方法来申请Let’s Encrypt免费证书，对国内的DnsPod和CloudXNS支持是最好的，明月正好用的是<code>DnsPod</code>,于是获得马上登陆CloudXNS获得API KEY和SECRET KEY，键入下面的命令：</p>
+<pre><code>export DP_Id=&quot;40279&quot;
+export DP_Key=&quot;f2ad63666b3ec9da28fe6f6274ae72b8&quot;
+</code></pre><p>这样就可以让acme.sh脚本使用域名解析服务商的API来做DNS验证域名所有权了。（吐槽一下：原来域名解析服务商的API还有这个好处呀，汗！）<br>然后继续键入如下命令：</p>
+<pre><code>acme.sh --issue --dns dns_dp -d yahui.wang -d blog.yahui.wang
+</code></pre><p>因为明月用的是二级域名，所以就不用指定主域名了，我用的是如下的命令：</p>
+<pre><code>acme.sh --issue --dns dns_dp -d blog.yahui.wang
+</code></pre><p>其中的pic.example.com就是你要申请证书的二级域名，这里也可以理解为是需要绑定到七牛云空间的域名。<br>因为需要验证TXT记录啥的，所以键入上述命令后会提示需要120秒等待时间，时间完成后就获得了这个域名的SSL证书了，为了保险期间明月强烈建议将这个域名证书文件copy到一个比较安全和自由的目录里，acme.sh默认保存的不容易获取。<br>可以使用如下命令来copy证书文件到指定目录：</p>
+<pre><code>acme.sh --installcert -d mydomain.com \
+--key-file /etc/nginx/ssl/mydomain.key \
+--fullchain-file /etc/nginx/ssl/mydonain.cer \
+</code></pre><p>上述里面的mydomai.com和domain修改为申请的域名，文件路径根据自己的情况指定即可。</p>
+<p>至此，Let’s Encrypt免费证书申请获取完成了。记得下载SSL证书文档到本地以便在七牛里导入这个证书，证书文档分别是.key和.cer文件。</p>
+<h1 id="七牛云里使用Let’s-Encrypt免费证书"><a href="#七牛云里使用Let’s-Encrypt免费证书" class="headerlink" title="七牛云里使用Let’s Encrypt免费证书"></a>七牛云里使用Let’s Encrypt免费证书</h1><p>登陆七牛云控制面板后，在“SSL证书管理”里点击“上传自由证书”。</p>
+<p>输入“证书备注名”<br>“证书内容”即为.cer文件的内容，使用类似EditPlus即可打开，只需要复制后粘贴到“证书内容”即可。<br>“证书私钥”即为.key文件的内容，使用类似EditPlus即可打开，只需要复制后粘贴到“证书私钥”即可。</p>
+<p>然后，点击“确定上传”即完成了七牛云导入Let’s Encrypt免费证书。</p>
+<p>在七牛云的绑定域名管理里选择要使用https的域名，点击“升级到HTTPS”，</p>
+<p>如果域名和上传的证书匹配，在那么就可以在下拉框里选择证书后提交即可</p>
+<blockquote>
+<p>总结</p>
+<blockquote>
+<p>今天明月也是收获不少再次叹服一下acme.sh的强大和Let’s Encrypt的免费，因为有了他们我们草根博客站长们也可以使用看着很“高大上”的https了，并且还是“免费”的，这个很重要。看来全民HTTPS时代真的是来临了！</p>
+</blockquote>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ssl/" rel="tag"># ssl</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/08/Senparc-Weixin-MP-Component/" rel="next" title="Senparc.Weixin.MP微信开发平台对接 [1]">
+                <i class="fa fa-chevron-left"></i> Senparc.Weixin.MP微信开发平台对接 [1]
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/13/centos-7-install-htop/" rel="prev" title="如何在CentOS 7上安装htop">
+                如何在CentOS 7上安装htop <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Arthur.Wang" />
+          <p class="site-author-name" itemprop="name">Arthur.Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#获取Let’s-Encrypt免费证书"><span class="nav-number">1.</span> <span class="nav-text">获取Let’s Encrypt免费证书</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七牛云里使用Let’s-Encrypt免费证书"><span class="nav-number">2.</span> <span class="nav-text">七牛云里使用Let’s Encrypt免费证书</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Arthur.Wang</span>
+</div>
+  <div>
+    <a href="http://www.miitbeian.gov.cn/">浙ICP备15006266号-1</a> 
+  </div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytcPprWi';
+      var conf = 'prod_bb1aa811d0de66b955a66368b654ae28';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

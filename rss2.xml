@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>亚辉的博客</title>
+    <link>http://blog.yahui.wang/</link>
+    <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description>The pursuit of endless</description>
+    <pubDate>Fri, 09 Feb 2018 11:12:00 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>gitlab安装和配置</title>
+      <link>http://blog.yahui.wang/2017/11/14/gitlab-install/</link>
+      <guid>http://blog.yahui.wang/2017/11/14/gitlab-install/</guid>
+      <pubDate>Tue, 14 Nov 2017 10:06:23 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1 id=&quot;Gitlab&quot;&gt;&lt;a href=&quot;#Gitlab&quot; class=&quot;headerlink&quot; title=&quot;Gitlab&quot;&gt;&lt;/a&gt;Gitlab&lt;/h1&gt;&lt;p&gt;GitLab是一个Git的代码托管工具，有免费的社区版允许我们在本地搭建代码托管网站，也有付费的企业版网站，
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/11/14/gitlab-install/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Git第一步，本地开发环境部署</title>
+      <link>http://blog.yahui.wang/2017/11/14/git-first/</link>
+      <guid>http://blog.yahui.wang/2017/11/14/git-first/</guid>
+      <pubDate>Tue, 14 Nov 2017 06:44:53 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1 id=&quot;Git第一步，本地开发环境部署&quot;&gt;&lt;a href=&quot;#Git第一步，本地开发环境部署&quot; class=&quot;headerlink&quot; title=&quot;Git第一步，本地开发环境部署&quot;&gt;&lt;/a&gt;Git第一步，本地开发环境部署&lt;/h1&gt;&lt;h2 id=&quot;基本环境安装&quot;&gt;&lt;a hr
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/11/14/git-first/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>npm更换镜像为国内源</title>
+      <link>http://blog.yahui.wang/2017/11/14/npm-config-set-registry/</link>
+      <guid>http://blog.yahui.wang/2017/11/14/npm-config-set-registry/</guid>
+      <pubDate>Tue, 14 Nov 2017 06:02:31 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;镜像使用方法（三种办法任意一种都能解决问题，建议使用第三种，将配置写死，下次用的时候配置还在）:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;通过config命令&quot;&gt;&lt;a href=&quot;#通过config命令&quot; class=&quot;headerli
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/11/14/npm-config-set-registry/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>centos7.* 安装 python3,pip3</title>
+      <link>http://blog.yahui.wang/2017/11/13/centos7-install-python3/</link>
+      <guid>http://blog.yahui.wang/2017/11/13/centos7-install-python3/</guid>
+      <pubDate>Mon, 13 Nov 2017 07:02:33 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1 id=&quot;centos7-安装-python3-pip3&quot;&gt;&lt;a href=&quot;#centos7-安装-python3-pip3&quot; class=&quot;headerlink&quot; title=&quot;centos7.* 安装 python3,pip3&quot;&gt;&lt;/a&gt;centos7.* 安装 py
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/11/13/centos7-install-python3/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>让linux程序后台运行</title>
+      <link>http://blog.yahui.wang/2017/11/13/linux-bg-jobs-setsid-hup/</link>
+      <guid>http://blog.yahui.wang/2017/11/13/linux-bg-jobs-setsid-hup/</guid>
+      <pubDate>Mon, 13 Nov 2017 04:14:58 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;我们计算的程序都是周期很长的，通常要几个小时甚至一个星期。我们用的环境是用putty远程连接到日本Linux服务器。所以使程序在后台跑有以下三个好处：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;1：我们这边是否关机不影响日本那边的程序运行。（不会像
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/11/13/linux-bg-jobs-setsid-hup/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>如何在CentOS 7上安装htop</title>
+      <link>http://blog.yahui.wang/2017/11/13/centos-7-install-htop/</link>
+      <guid>http://blog.yahui.wang/2017/11/13/centos-7-install-htop/</guid>
+      <pubDate>Mon, 13 Nov 2017 04:05:21 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;htop是一个Linux进程监视工具，它是top命令的替代工具，它是Linux和Unix操作系统中的标准和默认进程监视工具。但是CentOS 7上的htop更易于用户使用，并且与Linux的top命令相比，输出更容易阅读。&lt;br&gt;在本教程中，我们将
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/11/13/centos-7-install-htop/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>在七牛云里绑定的自定义域名使用Let’s Encrypt免费证书</title>
+      <link>http://blog.yahui.wang/2017/11/09/free-ssl-qiniu/</link>
+      <guid>http://blog.yahui.wang/2017/11/09/free-ssl-qiniu/</guid>
+      <pubDate>Thu, 09 Nov 2017 10:43:32 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;这里我们要介绍下 &lt;a href=&quot;https://github.com/Neilpang/acme.sh&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;acme.sh&lt;/a&gt; ,它实现了 acme 协议支持的所有验证协议. 一般
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/11/09/free-ssl-qiniu/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Senparc.Weixin.MP微信开发平台对接 [1]</title>
+      <link>http://blog.yahui.wang/2017/11/08/Senparc-Weixin-MP-Component/</link>
+      <guid>http://blog.yahui.wang/2017/11/08/Senparc-Weixin-MP-Component/</guid>
+      <pubDate>Wed, 08 Nov 2017 10:50:24 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Senparc.Weixin.MP&lt;/code&gt;高度集成了对接微信相关API的调用逻辑，并且官方有较为完整的示例代码，所以我们第一步接入站点，几乎是傻瓜式的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;注册开放平台账号并且开通
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/11/08/Senparc-Weixin-MP-Component/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>使用Visual Studio Code和typescript 开发调试React Native项目</title>
+      <link>http://blog.yahui.wang/2017/08/26/react-native-typescript-init-debug/</link>
+      <guid>http://blog.yahui.wang/2017/08/26/react-native-typescript-init-debug/</guid>
+      <pubDate>Sat, 26 Aug 2017 06:52:54 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;关于&lt;code&gt;React Native&lt;/code&gt;的详细介绍我就不叙述了，他是使用js构建原生app的开发框架。一次编码多平台运行，非常强大。但是个人不喜欢js的过于&lt;code&gt;灵活（弱类型）&lt;/code&gt;的语法。强大的强类型语言&lt;code&gt;T
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/08/26/react-native-typescript-init-debug/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>windows实现端口映射</title>
+      <link>http://blog.yahui.wang/2017/07/03/netsh-interface-portproxy/</link>
+      <guid>http://blog.yahui.wang/2017/07/03/netsh-interface-portproxy/</guid>
+      <pubDate>Mon, 03 Jul 2017 12:13:07 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1 id=&quot;查询端口映射情况&quot;&gt;&lt;a href=&quot;#查询端口映射情况&quot; class=&quot;headerlink&quot; title=&quot;查询端口映射情况&quot;&gt;&lt;/a&gt;查询端口映射情况&lt;/h1&gt;&lt;p&gt;netsh interface portproxy show v4tov4&lt;br&gt;查询这个I
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/07/03/netsh-interface-portproxy/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>ios私有api检测工具介绍</title>
+      <link>http://blog.yahui.wang/2017/05/31/iOS-private-api-checker-tools/</link>
+      <guid>http://blog.yahui.wang/2017/05/31/iOS-private-api-checker-tools/</guid>
+      <pubDate>Wed, 31 May 2017 05:03:17 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1 id=&quot;ios审核被拒&quot;&gt;&lt;a href=&quot;#ios审核被拒&quot; class=&quot;headerlink&quot; title=&quot;ios审核被拒&quot;&gt;&lt;/a&gt;ios审核被拒&lt;/h1&gt;&lt;p&gt;ios app上线的时候应为检测到app里面含有私有api被拒了，头疼，代码这么多怎么快速定位是
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/05/31/iOS-private-api-checker-tools/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>React Native入门到精通</title>
+      <link>http://blog.yahui.wang/2017/05/20/react-native-step-by-step/</link>
+      <guid>http://blog.yahui.wang/2017/05/20/react-native-step-by-step/</guid>
+      <pubDate>Sat, 20 May 2017 07:41:50 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1 id=&quot;react-native简介和安装&quot;&gt;&lt;a href=&quot;#react-native简介和安装&quot; class=&quot;headerlink&quot; title=&quot;react native简介和安装&quot;&gt;&lt;/a&gt;react native简介和安装&lt;/h1&gt;&lt;blockquote&gt;
+
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/05/20/react-native-step-by-step/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>初探nodejs安装 并快速使用http-server</title>
+      <link>http://blog.yahui.wang/2017/05/10/hello-nodejs-http-server/</link>
+      <guid>http://blog.yahui.wang/2017/05/10/hello-nodejs-http-server/</guid>
+      <pubDate>Wed, 10 May 2017 10:02:07 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1 id=&quot;nodejs&quot;&gt;&lt;a href=&quot;#nodejs&quot; class=&quot;headerlink&quot; title=&quot;nodejs&quot;&gt;&lt;/a&gt;nodejs&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/05/10/hello-nodejs-http-server/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>nodejs各平台（Windows，mac，linux）安装</title>
+      <link>http://blog.yahui.wang/2017/05/06/install-nodejs/</link>
+      <guid>http://blog.yahui.wang/2017/05/06/install-nodejs/</guid>
+      <pubDate>Sat, 06 May 2017 11:02:07 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1 id=&quot;nodejs&quot;&gt;&lt;a href=&quot;#nodejs&quot; class=&quot;headerlink&quot; title=&quot;nodejs&quot;&gt;&lt;/a&gt;nodejs&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/05/06/install-nodejs/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>react-native布局之flex</title>
+      <link>http://blog.yahui.wang/2017/04/22/react-native-layout-flex/</link>
+      <guid>http://blog.yahui.wang/2017/04/22/react-native-layout-flex/</guid>
+      <pubDate>Sat, 22 Apr 2017 12:06:48 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;flex布局方式又称弹性布局，主要要用到的属性有&lt;code&gt;flexDirection&lt;/code&gt;,&lt;code&gt;justifyContent&lt;/code&gt;,&lt;code&gt;alignItems&lt;/code&gt;,&lt;code&gt;alignSelf&lt;/code
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/04/22/react-native-layout-flex/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>react-native redux入门</title>
+      <link>http://blog.yahui.wang/2017/03/06/hello-react-native-redux/</link>
+      <guid>http://blog.yahui.wang/2017/03/06/hello-react-native-redux/</guid>
+      <pubDate>Mon, 06 Mar 2017 10:23:10 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1 id=&quot;为什么会有redux&quot;&gt;&lt;a href=&quot;#为什么会有redux&quot; class=&quot;headerlink&quot; title=&quot;为什么会有redux&quot;&gt;&lt;/a&gt;为什么会有redux&lt;/h1&gt;&lt;h2 id=&quot;react-native中的state&quot;&gt;&lt;a href=&quot;#re
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/03/06/hello-react-native-redux/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>swift 入门笔记</title>
+      <link>http://blog.yahui.wang/2017/01/28/swift-step-by-step/</link>
+      <guid>http://blog.yahui.wang/2017/01/28/swift-step-by-step/</guid>
+      <pubDate>Sat, 28 Jan 2017 12:23:35 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1 id=&quot;开发环境搭建Hello-World&quot;&gt;&lt;a href=&quot;#开发环境搭建Hello-World&quot; class=&quot;headerlink&quot; title=&quot;开发环境搭建Hello World&quot;&gt;&lt;/a&gt;开发环境搭建Hello World&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;安装Xc
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2017/01/28/swift-step-by-step/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>golang中func的receiver</title>
+      <link>http://blog.yahui.wang/2016/12/20/golang-func-receiver/</link>
+      <guid>http://blog.yahui.wang/2016/12/20/golang-func-receiver/</guid>
+      <pubDate>Tue, 20 Dec 2016 12:05:20 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;p&gt;golang中如果你定了一个&lt;code&gt;struct&lt;/code&gt; T，有个可以定义一个接收者为T的函数来使T更强大&lt;/p&gt;
+&lt;p&gt;但是T作为&lt;code&gt;receiver&lt;/code&gt;有两种形式：&lt;/p&gt;
+&lt;p&gt;一种是T本身，另一种是&lt;code&gt;*T&lt;/code&gt;，即T的指
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2016/12/20/golang-func-receiver/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>React Native Android gradle下载慢问题解决</title>
+      <link>http://blog.yahui.wang/2016/12/20/react-native-gradle/</link>
+      <guid>http://blog.yahui.wang/2016/12/20/react-native-gradle/</guid>
+      <pubDate>Tue, 20 Dec 2016 07:41:50 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;很多人会遇到 初次运行 react-native run android的时候 gradle下载极
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2016/12/20/react-native-gradle/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Xamarin IOS笔记 用户界面-布局</title>
+      <link>http://blog.yahui.wang/2016/06/21/Xamarin-IOS-UIVew/</link>
+      <guid>http://blog.yahui.wang/2016/06/21/Xamarin-IOS-UIVew/</guid>
+      <pubDate>Tue, 21 Jun 2016 10:26:53 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1 id=&quot;视图&quot;&gt;&lt;a href=&quot;#视图&quot; class=&quot;headerlink&quot; title=&quot;视图&quot;&gt;&lt;/a&gt;视图&lt;/h1&gt;&lt;h2 id=&quot;常用视图&quot;&gt;&lt;a href=&quot;#常用视图&quot; class=&quot;headerlink&quot; title=&quot;常用视图&quot;&gt;&lt;/a&gt;常用视图&lt;/h
+        
+      
+      </description>
+      
+      <comments>http://blog.yahui.wang/2016/06/21/Xamarin-IOS-UIVew/#disqus_thread</comments>
+    </item>
+    
+  </channel>
+</rss>

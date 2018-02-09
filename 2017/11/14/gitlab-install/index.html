@@ -1,0 +1,806 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="git,gitlab," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="亚辉的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="GitlabGitLab是一个Git的代码托管工具，有免费的社区版允许我们在本地搭建代码托管网站，也有付费的企业版网站，能够在线托管代码。传统方式是手动下载Gitlab的软件包，然后搭建相关运行环境。不过这种方式非常麻烦，而且如果要更换机器所有配置工作又得重来一边，如果有同学学过Java的话应该记得初学Java时配置环境变量的恐惧吧？因此更好的办法就是使用现在非常流行的Docker。 那么Dock">
+<meta name="keywords" content="git,gitlab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gitlab安装和配置">
+<meta property="og:url" content="http://blog.yahui.wang/2017/11/14/gitlab-install/index.html">
+<meta property="og:site_name" content="亚辉的博客">
+<meta property="og:description" content="GitlabGitLab是一个Git的代码托管工具，有免费的社区版允许我们在本地搭建代码托管网站，也有付费的企业版网站，能够在线托管代码。传统方式是手动下载Gitlab的软件包，然后搭建相关运行环境。不过这种方式非常麻烦，而且如果要更换机器所有配置工作又得重来一边，如果有同学学过Java的话应该记得初学Java时配置环境变量的恐惧吧？因此更好的办法就是使用现在非常流行的Docker。 那么Dock">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-09T11:12:00.060Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="gitlab安装和配置">
+<meta name="twitter:description" content="GitlabGitLab是一个Git的代码托管工具，有免费的社区版允许我们在本地搭建代码托管网站，也有付费的企业版网站，能够在线托管代码。传统方式是手动下载Gitlab的软件包，然后搭建相关运行环境。不过这种方式非常麻烦，而且如果要更换机器所有配置工作又得重来一边，如果有同学学过Java的话应该记得初学Java时配置环境变量的恐惧吧？因此更好的办法就是使用现在非常流行的Docker。 那么Dock">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.yahui.wang/2017/11/14/gitlab-install/"/>
+
+
+
+
+
+  <title>gitlab安装和配置 | 亚辉的博客</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f563a17daea7fd3c8c2618842db63d7f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">亚辉的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Coding For Fun</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.yahui.wang/2017/11/14/gitlab-install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Arthur.Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="亚辉的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">gitlab安装和配置</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-14T18:06:23+08:00">
+                2017-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/11/14/gitlab-install/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/11/14/gitlab-install/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Gitlab"><a href="#Gitlab" class="headerlink" title="Gitlab"></a>Gitlab</h1><p>GitLab是一个Git的代码托管工具，有免费的社区版允许我们在本地搭建代码托管网站，也有付费的企业版网站，能够在线托管代码。传统方式是手动下载Gitlab的软件包，然后搭建相关运行环境。不过这种方式非常麻烦，而且如果要更换机器所有配置工作又得重来一边，如果有同学学过Java的话应该记得初学Java时配置环境变量的恐惧吧？因此更好的办法就是使用现在非常流行的Docker。</p>
+<p>那么Docker又是个什么东西呢？这是一个虚拟化的运行工具，主要目的是将软件和整个运行环境打包起来，让我们不需要配置即可快速运行软件。由于Docker依赖于Linux内核的某些特性，所以Docker只能在Linux上运行。Windows上的Docker实际上是开了一个虚拟机。Docker目前好像没有比较好的中文社区，我谷歌了一下只找到了这个Docker中文社区，看起来还行。</p>
+<h2 id="下载Gitlab"><a href="#下载Gitlab" class="headerlink" title="下载Gitlab"></a>下载Gitlab</h2><p>配置好加速器之后，下载就很快了。直接执行下面的命令，稍等片刻之后，Docker就会将Gitlab下载好了。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo docker pull gitlab/gitlab-ce:latest</div></pre></td></tr></table></figure>
+<h2 id="启动Gitlab"><a href="#启动Gitlab" class="headerlink" title="启动Gitlab"></a>启动Gitlab</h2><p>用下面的命令启动一个默认配置的Gitlab。如果我们只在本机测试使用的话，将hostname替换为localhost。如果需要让外部系统也能访问的话使用外网IP地址。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">sudo docker run --detach \</div><div class="line">    --hostname gitlab.yahui.wang \</div><div class="line">    --publish 443:443 --publish 80:80 --publish 22:22 \</div><div class="line">    --name gitlab \</div><div class="line">    --restart always \</div><div class="line">    --volume /srv/gitlab/config:/etc/gitlab \</div><div class="line">    --volume /srv/gitlab/logs:/var/<span class="built_in">log</span>/gitlab \</div><div class="line">    --volume /srv/gitlab/data:/var/opt/gitlab \</div><div class="line">    gitlab/gitlab-ce:latest</div></pre></td></tr></table></figure>
+<p>首次启动可能比较慢，需要等待一分钟左右的时间。我们可以使用sudo docker ps命令查看当前所有Docker容器的状态。当它的状态由starting变为运行时间时，说明成功启动了。我们直接使用上面配置的IP地址（如localhost）在浏览器中访问即可。</p>
+<p>初次使用需要我们创建默认管理员密码，随便指定一个就行了。然后我们需要注册一个普通用户。以后的使用方法和Github这样的工具很相似了。</p>
+<h2 id="配置Gitlab"><a href="#配置Gitlab" class="headerlink" title="配置Gitlab"></a>配置Gitlab</h2><p>刚刚启动Gitlab的时候需要我们输入一个密码，这个密码是管理员用户的密码。我们在登录那里使用root作为用户名，然后用刚刚设置的密码，就可以以管理员身份登录Gitlab。</p>
+<p>登录进去之后，点击右上角的齿轮图标，即可进入到管理员页面。在这里我们可以设置很多东西。比如说，默认情况下每个用户只能创建10个仓库，我们可以改变这个设置。在管理员页面点击右面的齿轮，再点击设置，就会进入到系统设置中。然后找到Default projects limit一项，我们给它设个小目标，设它一个亿，这样就相当于无限仓库了。当然如果你实际硬盘满了也就不能在创建更多项目了。</p>
+<p>如果这些配置还是不能满足你的需求的时候，还可以直接配置Gitlab。首先进入到Docker环境中。我们使用下面的命令进入Docker环境的bash中。gitlab是刚刚指定的Gitlab名称。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo docker <span class="built_in">exec</span> -it gitlab /bin/bash</div></pre></td></tr></table></figure>
+<p>然后就进入了Docker的环境中，我们可以把它当作一个独立的系统来使用。然后编辑/etc/gitlab/gitlab.rb文件，这是Gitlab的全局配置文件。所有选项都可以在这里配置。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nano /etc/gitlab/gitlab.rb</div></pre></td></tr></table></figure>
+<p>详细的配置方法我也不会，直接看官方文档吧。</p>
+<h2 id="更新Gitlab"><a href="#更新Gitlab" class="headerlink" title="更新Gitlab"></a>更新Gitlab</h2><p>以后如果需要更新Gitlab版本，首先需要停止并删除当前的Gitlab实例。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo docker stop gitlab</div><div class="line">sudo docker rm gitlab</div></pre></td></tr></table></figure>
+<p>然后在拉取最新版的Gitlab。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo docker pull gitlab/gitlab-ce:latest</div></pre></td></tr></table></figure>
+<p>然后在使用上次的配置运行Gitlab即可。不用担心数据会丢失。只要你的volume参数指定还和上次一样，Gitlab就会自动读取这些配置。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">sudo docker run --detach \</div><div class="line">--hostname gitlab.yahui.wang \</div><div class="line">--publish 443:443 --publish 80:80 --publish 22:22 \</div><div class="line">--name gitlab \</div><div class="line">--restart always \</div><div class="line">--volume /srv/gitlab/config:/etc/gitlab \</div><div class="line">--volume /srv/gitlab/logs:/var/<span class="built_in">log</span>/gitlab \</div><div class="line">--volume /srv/gitlab/data:/var/opt/gitlab \</div><div class="line">gitlab/gitlab-ce:latest</div></pre></td></tr></table></figure>
+<p>最后来看看使用Docker的优势。还是在Gitlab的Bash中。我们依次输入下面的命令，看看有什么反应。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ruby --version</div><div class="line">git --version</div><div class="line">redis-cli --version</div><div class="line">psql --version</div></pre></td></tr></table></figure>
+<p>不出意外的话应该会显示对应软件的版本。我们看到Gitlab使用了4个开源软件或运行环境：ruby、git、redis和postgresql。如果我们手动安装Gitlab的话，这几个软件也必须分别安装和配置好。这个任务的难度可是非常大的。而且如果需要在多台机器上配置，那么任务量就更大了。但是如果使用Docker的话，我们甚至完全没必要知道这几个软件的存在，简单两条命令即可创建和运行Gitlab。这正是Docker的魅力，难怪现在越来越多的公司在使用Docker。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="使用docker-compose部署的话"><a href="#使用docker-compose部署的话" class="headerlink" title="使用docker-compose部署的话"></a>使用<code>docker-compose</code>部署的话</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="attr">web:</span></div><div class="line"><span class="attr">  image:</span> <span class="string">'gitlab/gitlab-ce:latest'</span></div><div class="line"><span class="attr">  restart:</span> <span class="string">always</span></div><div class="line"><span class="attr">  hostname:</span> <span class="string">'gitlab.yahui.wang'</span></div><div class="line"><span class="attr">  environment:</span></div><div class="line"><span class="attr">    GITLAB_OMNIBUS_CONFIG:</span> <span class="string">|</span></div><div class="line"><span class="string">      external_url 'http://gitlab.yahui.wang'</span></div><div class="line"><span class="string">      gitlab_rails['gitlab_shell_ssh_port'] = 2202</span></div><div class="line"><span class="string"></span><span class="attr">  ports:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">'8008:80'</span></div><div class="line"><span class="bullet">    -</span> <span class="string">'2202:22'</span></div><div class="line"><span class="attr">  volumes:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">'/data/gitlab/config:/etc/gitlab'</span></div><div class="line"><span class="bullet">    -</span> <span class="string">'/data/gitlab/logs:/var/log/gitlab'</span></div><div class="line"><span class="bullet">    -</span> <span class="string">'/data/gitlab/data:/var/opt/gitlab'</span></div></pre></td></tr></table></figure>
+<p>参考资料<br><code>https://yq.aliyun.com/articles/29941</code><br><code>https://docs.gitlab.com/omnibus/docker/README.html#gitlab-docker-images</code><br><code>http://blog.csdn.net/u011054333/article/details/61532271</code></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+            <a href="/tags/gitlab/" rel="tag"># gitlab</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/14/git-first/" rel="next" title="Git第一步，本地开发环境部署">
+                <i class="fa fa-chevron-left"></i> Git第一步，本地开发环境部署
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Arthur.Wang" />
+          <p class="site-author-name" itemprop="name">Arthur.Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Gitlab"><span class="nav-number">1.</span> <span class="nav-text">Gitlab</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载Gitlab"><span class="nav-number">1.1.</span> <span class="nav-text">下载Gitlab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动Gitlab"><span class="nav-number">1.2.</span> <span class="nav-text">启动Gitlab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Gitlab"><span class="nav-number">1.3.</span> <span class="nav-text">配置Gitlab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新Gitlab"><span class="nav-number">1.4.</span> <span class="nav-text">更新Gitlab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充"><span class="nav-number">1.5.</span> <span class="nav-text">补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用docker-compose部署的话"><span class="nav-number">1.5.1.</span> <span class="nav-text">使用docker-compose部署的话</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Arthur.Wang</span>
+</div>
+  <div>
+    <a href="http://www.miitbeian.gov.cn/">浙ICP备15006266号-1</a> 
+  </div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytcPprWi';
+      var conf = 'prod_bb1aa811d0de66b955a66368b654ae28';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

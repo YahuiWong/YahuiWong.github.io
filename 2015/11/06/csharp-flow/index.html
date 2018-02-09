@@ -1,0 +1,891 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c#," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="亚辉的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="程序的执行不只是根据代码的先后顺序,可以使用条件控制语句和循环语句对代码的执行加以控制  条件控制语句 根据条件 来判断是否执行相应的代码 关键字：有 if，switch  ifif和else和配合起来会使用 if 后面是个小括号，小括号里面是要判断的特定的条件，条件结果是bool类型。紧跟着条件结果为true的时候要执行的代码，如果是多行代码需要使用大括号{}括起来。如果条件结果是false，">
+<meta name="keywords" content="c#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c#进阶（3）执行流控制">
+<meta property="og:url" content="http://blog.yahui.wang/2015/11/06/csharp-flow/index.html">
+<meta property="og:site_name" content="亚辉的博客">
+<meta property="og:description" content="程序的执行不只是根据代码的先后顺序,可以使用条件控制语句和循环语句对代码的执行加以控制  条件控制语句 根据条件 来判断是否执行相应的代码 关键字：有 if，switch  ifif和else和配合起来会使用 if 后面是个小括号，小括号里面是要判断的特定的条件，条件结果是bool类型。紧跟着条件结果为true的时候要执行的代码，如果是多行代码需要使用大括号{}括起来。如果条件结果是false，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-09T11:12:00.050Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c#进阶（3）执行流控制">
+<meta name="twitter:description" content="程序的执行不只是根据代码的先后顺序,可以使用条件控制语句和循环语句对代码的执行加以控制  条件控制语句 根据条件 来判断是否执行相应的代码 关键字：有 if，switch  ifif和else和配合起来会使用 if 后面是个小括号，小括号里面是要判断的特定的条件，条件结果是bool类型。紧跟着条件结果为true的时候要执行的代码，如果是多行代码需要使用大括号{}括起来。如果条件结果是false，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.yahui.wang/2015/11/06/csharp-flow/"/>
+
+
+
+
+
+  <title>c#进阶（3）执行流控制 | 亚辉的博客</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f563a17daea7fd3c8c2618842db63d7f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">亚辉的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Coding For Fun</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.yahui.wang/2015/11/06/csharp-flow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Arthur.Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="亚辉的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">c#进阶（3）执行流控制</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-06T19:50:22+08:00">
+                2015-11-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming-language/" itemprop="url" rel="index">
+                    <span itemprop="name">开发语言</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2015/11/06/csharp-flow/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2015/11/06/csharp-flow/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>程序的执行不只是根据代码的先后顺序,可以使用条件控制语句和循环语句对代码的执行加以控制</p>
+</blockquote>
+<h1 id="条件控制语句"><a href="#条件控制语句" class="headerlink" title="条件控制语句"></a>条件控制语句</h1><blockquote>
+<p>根据条件 来判断是否执行相应的代码 关键字：有 if，switch</p>
+</blockquote>
+<h2 id="if"><a href="#if" class="headerlink" title="if"></a>if</h2><p>if和else和配合起来会使用 if 后面是个小括号，小括号里面是要判断的特定的条件，条件结果是bool类型。紧跟着条件结果为true的时候要执行的代码，如果是多行代码需要使用大括号{}括起来。如果条件结果是false，则执行其后紧跟着的else后面的代码，同样如果是多行代码需要用大括号括起来 else后面也可以继续加if判断 代码示例：</p>
+<pre><code>int i = 1;
+if (i &gt; 0)
+{
+    Console.WriteLine(&quot;i大于0&quot;);
+}
+else
+{
+    Console.WriteLine(&quot;i不大于0&quot;);
+}
+</code></pre><p>执行结果： i不大于0</p>
+<pre><code>//int i = 1;
+int i = -1;
+if (i &gt; 0)
+{
+    Console.WriteLine(&quot;i大于0&quot;);
+}
+else
+{
+    Console.WriteLine(&quot;i不大于0&quot;);
+}
+</code></pre><p>执行结果： i大于0</p>
+<h2 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h2><p>switch和case一起使用 当在一组互斥的分支中需要选择一个执行的时候使用。但switch参数里的值等于case后面的值的时候，执行case的代码 代码示例：</p>
+<pre><code>int i = -1;
+switch (i)
+{
+    case 0:
+        Console.WriteLine(&quot;当前i为0&quot;);
+        break;
+    case 1:
+        Console.WriteLine(&quot;当前i为1&quot;);
+        break;
+    case -1:
+        Console.WriteLine(&quot;当前i为-1&quot;);
+        break;
+    default:
+        break;
+}
+</code></pre><p>执行结果： 当前i为-1 &nbsp;</p>
+<h1 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h1><blockquote>
+<p>是代码在满足了一定的条件可以重复的执行的关键语句 主要有：for、foreach、while、do&hellip; while</p>
+</blockquote>
+<h2 id="for"><a href="#for" class="headerlink" title="for"></a>for</h2><p> 先来看个for语句执行的经典的例子</p>
+<pre><code>for (int i = 0; i &lt; 3; i++)
+{
+    Console.WriteLine(i.ToString());
+}
+</code></pre><p>执行结果： 0 1 2 &nbsp; 其中代码中 a. int i=0是第一次执行要运行的代码 b. i&lt;10是迭代执行的时候需要判断的条件，如果这个条件结果不是true，for语句将执行结束 c. i++ 是每次循环执行的时候要计算的表达式 d. Console.WriteLine(i.ToString()); 是需要循环执行的代码 代码执行的顺序是 a-&gt;b-&gt;d-&gt;c-&gt;b-&gt;d-&gt;c-&gt;b-&gt;d-&gt;c-&gt;b(此时i=3 已经不满足i&lt;3了 迭代结束)</p>
+<h2 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h2><p>与for相比foreach不需要那么繁琐 示例代码：</p>
+<pre><code>string[] strInfo = new string[] { &quot;你好&quot;, &quot;这里是&quot;, &quot;http://yahui.wang&quot; };
+foreach (string item in strInfo)
+{
+    Console.WriteLine(item);
+}
+</code></pre><p>执行结果： 你好 这里是 <code>http://yahui.wang</code> 可以看出foreach遍历了一个集合，取到集合里所有的单元，并且在循环语句中使用这个单元</p>
+<h2 id="while"><a href="#while" class="headerlink" title="while"></a>while</h2><p>如果while里的表达式如果条件满足，将会执行while后大括号里的代码，条件不满足的时候跳出执行 代码示例：</p>
+<pre><code>  int value = 0;
+while (value&lt;2)
+{
+    Console.WriteLine(&quot;我执行了一次&quot;);
+    value++;
+}
+</code></pre><p>执行结果： 我执行了一次 我执行了一次</p>
+<h2 id="do-hellip-while"><a href="#do-hellip-while" class="headerlink" title="do &hellip; while"></a>do &hellip; while</h2><p>do while相当于while的另一个版本 区别在于先执行do后面大括号的代码 在进行while判断，也就是说 do后面大括号里的代码必定会执行一编 代码示例：</p>
+<pre><code>do
+{
+    Console.WriteLine(&quot;我执行了一次&quot;);
+} while (false)
+</code></pre><p>&nbsp; 执行结果： 我执行了一次</p>
+<h1 id="跳转语句"><a href="#跳转语句" class="headerlink" title="跳转语句"></a>跳转语句</h1><blockquote>
+<p>在代码执行的过程中跳到另一行代码执行或者跳出当前循环，结束当前代码段执行等起跳转作用的语句，包括：goto、break、continue、return、</p>
+</blockquote>
+<h2 id="goto"><a href="#goto" class="headerlink" title="goto"></a>goto</h2><p>从示例中学习</p>
+<pre><code>    goto label;
+    Console.WriteLine(&quot;世界&quot;);
+label:
+    Console.WriteLine(&quot;你好&quot;);
+</code></pre><p>执行结果： 你好 说明：其中label:是一个名为label的标签；后面的代码是标记的代码，执行goto label的时候直接跳转到了label标记代码，中间的&nbsp; Console.WriteLine(“世界”) 没有被执行。 goto不能跳转到循环关键字的代码块中，也不能跳出try catch 的finally代码块 但是在实际使用中，goto的口碑并不怎么好。不建议经常使用。</p>
+<h2 id="break"><a href="#break" class="headerlink" title="break"></a>break</h2><p> break可以跳出switch里的单个case ，也可以跳出for、foreach、while、do&hellip;while循环 &nbsp;</p>
+<h2 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h2><p> continue是跳出此次循环，进入下个循环。在for、foreach、while、do&hellip;while中使用。 &nbsp;</p>
+<h2 id="return"><a href="#return" class="headerlink" title="return"></a>return</h2><p> return结束一个函数的执行，给出一个函数的返回值，当一个函数没有返回值的时候 return只做结束当前函数使用 &nbsp; 本文代码地址：<a href="https://github.com/yahue/JustDoIt-CSharp/tree/master/0003_Source/0003_Source" target="_blank" rel="external">https://github.com/yahue/JustDoIt-CSharp/tree/master/0003_Source/0003_Source</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag"># c#</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/04/csharp-const-type/" rel="next" title="c#进阶（2）之变量、常量和数据类型">
+                <i class="fa fa-chevron-left"></i> c#进阶（2）之变量、常量和数据类型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/27/linux-jexus-default-lauching/" rel="prev" title="linux  jexus 服务 设置开机启动">
+                linux  jexus 服务 设置开机启动 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Arthur.Wang" />
+          <p class="site-author-name" itemprop="name">Arthur.Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#条件控制语句"><span class="nav-number">1.</span> <span class="nav-text">条件控制语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#if"><span class="nav-number">1.1.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#switch"><span class="nav-number">1.2.</span> <span class="nav-text">switch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#循环语句"><span class="nav-number">2.</span> <span class="nav-text">循环语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#for"><span class="nav-number">2.1.</span> <span class="nav-text">for</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#foreach"><span class="nav-number">2.2.</span> <span class="nav-text">foreach</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#while"><span class="nav-number">2.3.</span> <span class="nav-text">while</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#do-hellip-while"><span class="nav-number">2.4.</span> <span class="nav-text">do … while</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跳转语句"><span class="nav-number">3.</span> <span class="nav-text">跳转语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#goto"><span class="nav-number">3.1.</span> <span class="nav-text">goto</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#break"><span class="nav-number">3.2.</span> <span class="nav-text">break</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#continue"><span class="nav-number">3.3.</span> <span class="nav-text">continue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#return"><span class="nav-number">3.4.</span> <span class="nav-text">return</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Arthur.Wang</span>
+</div>
+  <div>
+    <a href="http://www.miitbeian.gov.cn/">浙ICP备15006266号-1</a> 
+  </div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytcPprWi';
+      var conf = 'prod_bb1aa811d0de66b955a66368b654ae28';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
